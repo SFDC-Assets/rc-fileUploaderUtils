@@ -1,0 +1,14 @@
+<design:component>
+    
+    <!-- input -->
+    <design:attribute name="recordId" label="Record Id" />
+    <design:attribute name="showFileHeader" label="Show File Header?" />
+    <design:attribute name="fileHeaderText" label="File Header Text" />
+    <design:attribute name="uploadMultiple" label="Upload Multiple?" />
+    <design:attribute name="acceptFileTypes" label="Accept File Types (.pdf, .jpg and etc.)" />
+    
+    <!-- output --> 
+    <design:attribute name="files" label="Files" description="List of ContentDocument" />
+    <design:attribute name="contentVersionIDs" label="Content Version IDs" description="List of String" />
+    
+</design:component>

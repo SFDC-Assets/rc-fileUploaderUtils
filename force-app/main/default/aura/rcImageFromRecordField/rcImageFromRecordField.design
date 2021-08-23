@@ -1,0 +1,9 @@
+<design:component>
+	<!-- input -->
+    <design:attribute name="recordId" label="Record Id" />
+    <design:attribute name="fieldName" label="Field Name" Description="object field name that contains a URL to iframe" />
+    <design:attribute name="width" label="Width" Description="iframe/image width" Default="100%" />
+    <design:attribute name="height" label="Height" Description="iframe/image height" Default="600px" />
+    <design:attribute name="title" label="Title" Description="component title" />
+    <design:attribute name="renderType" label="Render Type" Description="IFRAME or IMG" Default="IMG" />
+</design:component>

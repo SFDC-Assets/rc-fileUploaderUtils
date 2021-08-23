@@ -1,0 +1,83 @@
+<aura:component controller="rcFileUploadHandler" implements="lightning:availableForFlowScreens,force:appHostable,force:hasRecordId" access="global" >  
+
+    <!-- based on code from: https://www.issacc.com/advanced-lightning-file-upload-component/ -->
+    
+    <!-- input -->
+    <aura:attribute name="recordId" type="String" />  
+    <aura:attribute name="acceptFileTypes" type="String" />  
+    <aura:attribute name="showFileHeader" type="Boolean" default="true" />  
+    <aura:attribute name="fileHeaderText" type="String" default="Files" />
+    <aura:attribute name="fileUploadedHeaderText" type="String" default="File Uploaded - Delete to upload a different file or submit to save image" />   
+    <aura:attribute name="uploadMultiple" type="Boolean" default="false"/>
+    
+    <!-- output -->
+	<aura:attribute name="files" type="ContentDocument[]"/>
+    <aura:attribute name="contentVersionIDs" type="String[]"/>
+       
+    <!-- private attributes -->
+    <aura:attribute name="showSpinner" type="boolean" default="false"/>
+    <aura:attribute name="theFileHeaderText" type="String" />
+
+    <!-- handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>  
+    
+    <div class="slds-card slds-card_boundary">  
+        
+        <!-- show or hide header -->
+        <aura:if isTrue="{!v.showFileHeader}">
+            <div class="slds-page-header">{!v.theFileHeaderText}</div>  
+        </aura:if>
+        
+        <aura:if isTrue="{!or(v.uploadMultiple == true, and(v.uploadMultiple == false, v.files.length != 1))}">
+            <div class="slds-align_absolute-center">  
+                <lightning:fileUpload multiple="{!v.uploadMultiple}"   
+                                      accept="{!v.acceptFileTypes}"
+                                      recordId="{!v.recordId}"   
+                                      onuploadfinished="{!c.uploadFinished}" />  
+            </div>          
+            <br/> 
+        </aura:if>
+        
+        <div class="slds-form--compound">
+            <!-- only show the table if there are uploaded files -->
+            <aura:if isTrue="{!not(empty(v.files))}">
+                <table class="slds-table slds-table--bordered">  
+                    <thead>  
+                        <tr>  
+                            <th>Title</th>
+                            <th>File Type</th>  
+                            <th></th>                     
+                        </tr>  
+                    </thead>                  
+                    <tbody>
+                        <aura:iteration items="{!v.files}" var="f">  
+                            <tr>  
+                                <td>
+                                    <a href="javascript:void(0)" id="{!f.Id}" onclick="{!c.previewFile}">
+                                        {!f.Title}
+                                    </a>
+                                </td>  
+                                <td>{!f.FileType}</td>      
+                                <td>
+                                    <a href="javascript:void(0)" id="{!f.Id}" onclick="{!c.deleteSelectedFile}">
+                                        <lightning:icon size="x-small" iconName="utility:delete" alternativeText="Delete" />
+                                    </a>
+                                </td>
+                            </tr>  
+                        </aura:iteration>  
+                    </tbody>  
+                </table>  
+            </aura:if>
+            
+            <!-- show spinner logo when needed -->
+            <aura:if isTrue="{!v.showSpinner}">
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </aura:if>
+        </div> 
+    </div>  
+</aura:component>

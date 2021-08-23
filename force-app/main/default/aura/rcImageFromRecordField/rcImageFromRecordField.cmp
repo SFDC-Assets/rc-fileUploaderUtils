@@ -1,0 +1,36 @@
+<aura:component access="global" description="rcImageFromRecordField"
+                implements="lightning:availableForFlowScreens,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId"
+                controller="rcImageFileController" >
+    
+    <!-- input parameters -->
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="fieldName" type="String" default="Logo_URL__c"/>
+    <aura:attribute name="width" type="String" default="100%"/>
+    <aura:attribute name="height" type="String" default="600px"/>
+    <aura:attribute name="title" type="String" />
+    <aura:attribute name="renderType" type="String" default="IMG" description="IFRAME or IMG" />
+    
+    <!-- private attributes --> 
+    <aura:attribute name="srcURL" type="String" />
+    
+    <!-- handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>  
+    
+	<!-- body -->    
+	<div>
+        <aura:if isTrue="{!v.title}">
+        	<div class="slds-page-header">{!v.title}</div> 
+        </aura:if>
+        
+        <aura:if isTrue="{!v.srcURL}">
+            <aura:if isTrue="{!v.renderType == 'IFRAME'}">
+        		<iframe src="{!v.srcURL}" width="{!v.width}" height="{!v.height}" 
+                    	allowfullscreen="true" style="border:none" />
+            </aura:if>
+            <aura:if isTrue="{!v.renderType == 'IMG'}">
+                <img src="{!v.srcURL}" />
+            </aura:if>
+        </aura:if>
+   	</div>
+    
+</aura:component>

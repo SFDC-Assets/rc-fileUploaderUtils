@@ -1,0 +1,8 @@
+<design:component>
+    
+	<!-- input -->
+    <design:attribute name="srcURL" label="Source URL" Description="iframe URL; to reference a static resource, use for example: /resource/rcDiagram_bitmap" />    
+    <design:attribute name="width" label="Width" Description="iframe/image width" Default="100%" />
+    <design:attribute name="height" label="Height" Description="iframe/image height" Default="600px" />
+
+</design:component>

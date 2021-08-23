@@ -1,0 +1,24 @@
+minimum_cumulusci_version: '3.42.0'
+project:
+    name: rc-fileUploaderUtils
+    package:
+        name: rc-fileUploaderUtils
+        api_version: '52.0'
+    git:
+    source_format: sfdx
+
+tasks:
+    robot:
+        options:
+            suites: robot/rc-fileUploaderUtils/tests
+            options:
+                outputdir: robot/rc-fileUploaderUtils/results
+
+    robot_testdoc:
+        options:
+            path: robot/rc-fileUploaderUtils/tests
+            output: robot/rc-fileUploaderUtils/doc/rc-fileUploaderUtils_tests.html
+
+    run_tests:
+        options:
+            required_org_code_coverage_percent: 75
