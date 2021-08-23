@@ -1,9 +1,9 @@
-# Salesforce App
+# rc-fileUploaderUtils
 
-## Dev, Build and Test
+## Development
 
-## Resources
+To work on this project in a scratch org:
 
-## Description of Files and Directories
-
-## Issues
+1. [Set up CumulusCI](https://cumulusci.readthedocs.io/en/latest/tutorial.html)
+2. Run `cci flow run dev_org --org dev` to deploy this project.
+3. Run `cci org browser dev` to open the org in your browser.
